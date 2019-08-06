@@ -1,5 +1,9 @@
+import logging
+import os
+import requests
+import sys
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-import logging, os, sys, requests
 
 # set path env TOKEN='XXX' and MODE = dev/prod
 
@@ -11,6 +15,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 # global variable
 mode = os.getenv("MODE")  # set in path env
 TOKEN = os.getenv("TOKEN")  # set in path env
+api_key = os.getenv("API_KEY")  # set in path env
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
@@ -46,9 +51,6 @@ def woodlands(update, context):
             woodlands_johor = each_dict
         if '2702' in each_dict.values():  # Woodlands Checkpoint (Towards BKE)
             woodlands_bke = each_dict
-        else:
-            logger.error("Something went wrong with the request")
-            sys.exit(1)
 
     woodlands_johor_image = woodlands_johor['image']
     woodlands_johor_timestamp = woodlands_johor['timestamp'].replace('T', ' ')[:-6]
@@ -66,16 +68,12 @@ def woodlands(update, context):
 def tuas(update, context):
     response = requests.get('https://api.data.gov.sg/v1/transport/traffic-images').json()
     lta_raw_data = response['items'][0]
-    # lta_current_time_stamp = lta_raw_data['timestamp']
     lta_data = lta_raw_data['cameras']  # a list
     for each_dict in lta_data:
         if '4703' in each_dict.values():  # Second Link at Tuas
             tuas_link = each_dict
         if '4713' in each_dict.values():  # Tuas Checkpoint
             tuas_checkpoint = each_dict
-        else:
-            logger.error("Something went wrong with the request")
-            sys.exit(1)
 
     tuas_link_image = tuas_link['image']
     tuas_link_timestamp = tuas_link['timestamp'].replace('T', ' ')[:-6]
@@ -92,7 +90,6 @@ def tuas(update, context):
 
 def rates(update, context):
     website = 'https://free.currconv.com/api/v7/convert?q=SGD_MYR,MYR_SGD&compact=ultra&apiKey={}'
-    api_key = os.getenv("API_KEY")
     currency = requests.get(website.format(api_key)).json()
     sgd_to_myr = currency.get('SGD_MYR')
     context.bot.send_message(chat_id=update.message.chat_id,
