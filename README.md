@@ -80,7 +80,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 - requests for API
 - sys for stopping the bot
 
-###global variables
+### global variables
 Next, the global variables:
 ```python
 # logger
@@ -99,7 +99,7 @@ Lets take a moment and talk about the different functions. For ```mode,Token,api
 from the telegram wrapper. Which you can read it from [here](https://python-telegram-bot.readthedocs.io/en/stable/telegram.ext.html).
 
 Now, lets determine what "mode" we should run in. Let's say you want to deploy it to a server, you will have to run a different sets of commands. Run locally on your IDE, another sets of commands, therefore we write this:
-###to run
+### to run
 ```python
 # options to run
 if mode == "dev":
@@ -118,7 +118,7 @@ else:
 
 Now, set your environment variable "MODE" as ```dev```. dev stands for developer mode, while ```prod``` is only used during the server deployment. In this case, we are using Heroku thus the [webhook](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks#heroku).
 
-###functions
+### functions
 Now here's the juicy part. Writing of functions:
 
 DO NOT COPY THIS PART (SAMPLE EXPLANATIONS)
@@ -161,7 +161,7 @@ The ID of each camera can be found by inspecting the data mall images and identi
 
 The same theory applies for the currency API grab. The API we are using will be a free-to-use API known as [The Free Currency Converter API](https://free.currencyconverterapi.com/).
 
-###to run (cont)
+### to run (cont)
 Finally, to run all the functions and for the bot to "listen" to commands, we will use
 ```python
 if __name__ == '__main__':
@@ -190,7 +190,28 @@ Enter all Environment Variable into Heroku under ```Settings>Config Vars```
 
 ![path_var](https://user-images.githubusercontent.com/20770447/62532640-72506080-b877-11e9-9c0e-0396775913c7.png) 
 
-#### Deployment
+Heroku requires a procfile in the root directory of your project folder(i.e where you put your python script).
+
+**the procfile must be extension-less, not even .txt**
+
+in the procfile type in ```web: python3 xxx.py``` where xxx is the name of your python file. In my case it's bot.py
+
+For more explanation why it is in this format, visit this [site](https://devcenter.heroku.com/articles/procfile)
+
+Heroku also requires something known as a ```requirements.txt``` which is also placed at the root directory of your project folder.
+
+By running the commands:
+
+```bash
+$ pipenv update
+```
+followed by
+```bash
+$ pipenv run pip freeze > requirements.txt
+```
+
+Click on ```requirements.txt``` it should have the word ```python-telegram-bot==12.0.0b1``` inside.
+
 ###### GIT
 We will be uploading Heroku via GIT.
 
