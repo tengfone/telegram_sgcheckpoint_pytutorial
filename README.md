@@ -1,5 +1,5 @@
 # telegram_sgcheckpoint_pytutorial
-A basic tutorial to write a telegram bot using python written by someone who does not know how to code at all (Learnt on the go). This version only uses telegram [CommandHandler](https://python-telegram-bot.readthedocs.io/en/stable/telegram.ext.commandhandler.html) for simplicity purposes. We will be using [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) as a wrapper. We will also learn to deploy using Herokuso that you do not need to on your IDE 24/7 to run the bot)
+A basic tutorial to write a telegram bot using python written by someone who does not know how to code at all (Learnt on the go). This version only uses telegram [CommandHandler](https://python-telegram-bot.readthedocs.io/en/stable/telegram.ext.commandhandler.html) for simplicity purposes. We will be using [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) as a wrapper. We will also learn to deploy using Heroku so that you do not need to on your IDE 24/7 to run the bot)
 
 ## Screenshots
 ![niceimage](https://user-images.githubusercontent.com/20770447/62521344-0dd6d680-b862-11e9-9a3a-e22af5106030.gif)
@@ -217,22 +217,25 @@ We will be uploading Heroku via GIT.
 
 Launch Console on your IDE, ensure that the console points to your project folder where you initialize your scripts and pipenv.
 
-
+Log in to Heroku
+```bash
+$ heroku login
+```
 Initialize GIT 
 ```bash
 $ git init
 ```
+Load it into Heroku Remote Repo
+```bash
+heroku git:remote -a NAMEOFYOUR_HEROKU_APP
+```
 Add all files to GIT Local Repo
 ```bash
-$ git add --all
+$ git add .a
 ```
 Commit the files
 ```bash
-$ git commit -m "First Commit"
-```
-Log in to Heroku
-```bash
-$ heroku login
+$ git commit -am "First Commit"
 ```
 Deploy code
 ```bash
@@ -241,7 +244,10 @@ $ git push heroku master
 Any other error codes can be resolved [here](https://devcenter.heroku.com/articles/git)
 
 ## Further Development
-This can be further develop by enabling more logging, handling errors, dockerize the bot.
+There is a V2 of the bot [here](https://github.com/tengfone/telegram_sgcheckpointv2_pytutorial), which covers ConversationHandlers, reply keyboard etc. Or in simple terms, a better UI.
+
+
+This current version can be further develop by enabling more logging, handling errors, dockerize the bot.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
