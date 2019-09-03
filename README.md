@@ -49,7 +49,7 @@ Next we will need to install the telegram package known as [python-telegram-bot]
 We will be ***only*** be using version 12.0.0b1, do not use version 11.
 
 ```bash
-$ pip install python-telegram-bot==12.0.0b1 --upgrade
+$ pipenv install python-telegram-bot==12.0.0b1 --upgrade
 ```
 For this particular tutorial, we will only be using telegram [CommandHandler](https://python-telegram-bot.readthedocs.io/en/stable/telegram.ext.commandhandler.html).
 
