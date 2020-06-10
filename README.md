@@ -243,6 +243,9 @@ $ git push heroku master
 ```
 Any other error codes can be resolved [here](https://devcenter.heroku.com/articles/git)
 
+###### Another Deployment Method
+Check out the Medium Article I wrote [here](https://medium.com/@tengfone/cheap-vps-hosting-for-telegram-bots-inactive-sites-e775a134d6aa) for deploying with VPS. *Use incognito mode to bypass view limit*
+
 ## Further Development
 There is a V2 of the bot [here](https://github.com/tengfone/telegram_sgcheckpointv2_pytutorial), which covers ConversationHandlers, reply keyboard etc. Or in simple terms, a better UI.
 
